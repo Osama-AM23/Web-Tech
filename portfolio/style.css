@@ -22,12 +22,13 @@
         font-size: 80%;
     }
 }
+
 :root {
 
     --bg-color: #fff;
-    --snd-bg-color: #f4f1649d;
+    --snd-bg-color: #dcc21a;
     --text-color: #000;
-    --main-color: #feed04f7;
+    --main-color: #fffd2b;
 }
 
 html {
@@ -174,7 +175,7 @@ section {
     #menu-icon {
         font-size: 3rem;
     }
-} 
+}
 
 /* Home Section code */
 
@@ -182,6 +183,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .home-img img {
@@ -278,6 +280,8 @@ span {
 .btn:hover {
     box-shadow: 0 0 1.6rem var(--main-color);
 }
+
+
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
@@ -520,6 +524,7 @@ span {
         font-size: 14px;
     }
 }
+
 /* skills section */
 #skills {
     display: flex;
@@ -532,9 +537,10 @@ span {
 
 /* Title */
 .inner h2 {
-    font-size: 2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 5rem;
     margin-bottom: 20px;
-    color:var(--main-color);
+    color: var(--snd-bg-color);
 }
 
 /* Skills Grid */
@@ -563,8 +569,8 @@ span {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
 }
 
 /* Hover Effect */
@@ -575,7 +581,7 @@ span {
 
 /* Icons */
 .skill-icon {
-    width: 80px;
+    width: 83px;
     height: auto;
 }
 
@@ -601,108 +607,81 @@ span {
 
 
 /* Technical Summary Section */
-/* Style for container and headings */
-h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin: 20px 0;
-    color: var(--main-color);
-}
-
-/* Container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-/* Each tech item */
-.tech-item {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 400px;
-}
-
-/* Hidden Checkbox */
-.toggle-input {
-    display: none;
-}
-
-/* Circle Button */
-.circle {
+.center {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    color: var(--text-color);
-    background-color: var(--snd-bg-color);
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--main-color);
 }
 
-/* Hover Glow Effect */
-.circle:hover {
-    background-color: var(--main-color);
-    transform: scale(1.1);
+.slider {
+    width: 100%;
+    height: fit-content;
+    padding: 70px 0;
+    overflow: auto;
 }
 
-/* Summary Box */
-.summary-box {
-    position: absolute;
-    left: 120px;
-    width: 250px;
-    padding: 15px;
-    background-color: var(--snd-bg-color);
-    border-left: 5px solid var(--snd-bg-color);
+.slider::-webkit-scrollbar {
+    width: 80px;
+    height: 5px;
+}
+
+.slider::-webkit-scrollbar-thumb {
+    background: var(--snd-bg-color);
     border-radius: 10px;
-    font-size: 1rem;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Show Summary on Click */
-.toggle-input:checked + .circle + .summary-box {
-    opacity: 1;
-    transform: translateX(0);
+.slider::-webkit-scrollbar-track {
+    background: var(--main-color);
 }
 
-/* Media Queries */
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
+.card {
+    width: 400px;
+    height: 400px;
+    background: var(--bg-color);
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: poppins;
+    position: relative;
+    margin: 0 20px;
+}
 
-    .tech-item {
-        flex-direction: column;
-        align-items: center;
-    }
+.title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--snd-bg-color);
+}
 
-    .circle {
-        width: 80px;
-        height: 80px;
-    }
+.subtitle {
+    font-size: 14px;
+}
 
-    .summary-box {
-        left: 0;
-        width: 90%;
-        transform: translateX(0);
-    }
+.card span {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 30px;
+}
 
-    .toggle-input:checked + .circle + .summary-box {
-        opacity: 1;
-        transform: translateY(10px);
-    }
+.cards {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card p {
+    font-size: 14px;
+    color: var(--text-color);
+    line-height: 1.6;
+    text-align: center;
+    padding: 0 15px;
 }
 
 
@@ -783,7 +762,7 @@ h2 {
 .contact-form {
     flex: 1;
     min-width: 50%;
-    background:var(--main-color);
+    background: var(--main-color);
     padding: 40px;
     border-radius: 0 20px 20px 0;
     display: flex;
@@ -792,6 +771,7 @@ h2 {
 }
 
 .contact-form h3 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 24px;
     margin-bottom: 20px;
     color: var(--text-color);
@@ -843,7 +823,8 @@ h2 {
         border-radius: 20px;
     }
 
-    .contact-info, .contact-form {
+    .contact-info,
+    .contact-form {
         min-width: 100%;
         border-radius: 0;
     }
@@ -871,8 +852,8 @@ h2 {
 
 .footer .social a {
     font-size: 25px;
-    color: var(--main-color);
-    border: 2px solid var(--main-color);
+    color: var(--snd-bg-color);
+    border: 2px solid var(--snd-bg-color);
     width: 42px;
     height: 42px;
     line-height: 42px;
@@ -897,10 +878,11 @@ h2 {
     color: var(--text-color);
 }
 
-@media (max-width: 991px){
-    #menu-icon{
-        display:block;
+@media (max-width: 991px) {
+    #menu-icon {
+        display: block;
     }
+
     .navbar {
         position: absolute;
         top: 100%;
@@ -911,29 +893,34 @@ h2 {
         flex-direction: column;
         background: var(--main-color);
         transition: all 0.5s ease;
-        backdrop-filter:  blur(10px);
+        backdrop-filter: blur(10px);
     }
+
     .navbar a {
         display: block;
         padding: 17px;
         font-size: 22px;
     }
+
     .navbar.active {
         right: 0;
     }
+
     .home {
         flex-direction: column;
     }
+
     .home-content h1 {
         font-size: 5rem;
     }
+
     .home-content {
         order: 2;
         margin-left: 1rem;
     }
+
     .home-img img {
         width: 70vw;
         margin-top: 4rem;
     }
 }
-
