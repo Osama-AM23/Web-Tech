@@ -1,109 +1,118 @@
+<%@ page isELIgnored = "false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add showroom</title>
-    <link rel="icon" href="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg"
-        type="image/png" />
+    <title>Add Showroom</title>
+    <link rel="icon" href="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg" type="image/png" />
 
     <style>
-        :root {
-            --main-color: #5c899d;
-            --bg-color: #fffcef;
-            --text-color: #2e4a56;
-        }
+            :root {
+                --main-color: #5c899d;
+                --bg-color: #fffcef;
+                --text-color: #2e4a56;
+            }
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
+            body {
+                margin: 0;
+                font-family: system-ui, sans-serif;
+                background: var(--bg-color);
+                color: var(--text-color);
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                flex-direction: column;
+            }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--main-color);
-            padding: 8px 15px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: var(--main-color);
+                padding: 8px 15px;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
 
-        header img {
-            height: 35px;
-            width: auto;
-        }
+            header img {
+                height: 35px;
+                width: auto;
+            }
 
-        .container {
-            background: var(--main-color);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 300px;
-        }
+            .container {
+                background: var(--main-color);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                width: 350px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .container h3 {
-            color: white;
-            margin-bottom: 15px;
-        }
+            .container h3 {
+                color: white;
+                margin-bottom: 15px;
+                font-size: 18px;
+            }
 
-        .container input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            background: white;
-            color: var(--text-color);
-            font-size: 16px;
-            outline: none;
-            transition: background 0.3s ease-in-out;
-        }
+            .container input,
+            .container select {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background: white;
+                color: var(--text-color);
+                font-size: 16px;
+                outline: none;
+                box-sizing: border-box;
+                display: block;
+            }
 
-        .container input::placeholder {
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 12px;
-            font-style: italic;
-        }
+            .container input:focus,
+            .container select:focus {
+                border-color: var(--main-color);
+                background: var(--bg-color);
+            }
 
-        .container input::placeholder {
-            color: var(--text-color);
-            opacity: 0.8;
-        }
+            .container input[type="submit"] {
+                background: var(--bg-color);
+                color: var(--text-color);
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                width: 100%;
+                box-shadow: 0 0 5px var(--bg-color);
+                border: none;
+            }
 
-        .container input:focus {
-            background: var(--bg-color);
-        }
+            .container input[type="submit"]:hover {
+                box-shadow: 0 0 15px var(--bg-color);
+                transform: scale(1.05);
+            }
 
-        .container input[type="submit"] {
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            width: 100%;
-            box-shadow: 0 0 5px var(--bg-color);
-        }
-
-        .container input[type="submit"]:hover {
-            box-shadow: 0 0 15px var(--bg-color);
-            transform: scale(1.05);
-        }
-    </style>
+            .error-msg {
+                color: red;
+                font-size: 12px;
+                font-weight: bold;
+                display: block;
+                margin-top: 2px;
+                text-align: left;
+                width: 100%;
+            }
+        </style>
 </head>
 
 <body>
@@ -112,14 +121,131 @@
     </header>
 
     <div class="container">
+        <form action="addShowRoom" method="post">
+            <h3>ADD SHOWROOM BRANCH</h3>
+            <input type="text" id="showroomName" name="showroomName" placeholder="Enter Showroom Name" oninput="onShowroom()" />
+            <span id="showroomError" class="error-msg"></span>
 
-        <h3>ADD SHOWROOM BRANCH</h3>
-        <input type="text" id="showroomName" name="showroomName" placeholder="Enter Show Room Name" />
-        <input type="text" id="location" name="location" placeholder="Enter location" />
-        <input type="text" id="phoneNo" name="phoneNo" placeholder="Enter showroom contact" />
-        <input type="submit" value="Register showroom">
+            <input type="text" onchange="onAddress()" id="address" name="address" placeholder="Enter Showroom Address" />
+            <span id="addressError" class="error-msg"></span>
 
+            <select name="city" id="city">
+                <option value="" disabled selected>Select Showroom City</option>
+                <c:forEach items="${city}" var="city">
+                    <option value="${city.name()}">${city.name()}</option>
+                </c:forEach>
+            </select>
+
+            <input type="text" onchange="onContact()" id="contact" name="contact" placeholder="Enter Showroom Contact" />
+            <span id="contactError" class="error-msg"></span>
+
+            <input type="submit"  id="submitButton" value="Register Showroom">
+        </form>
     </div>
+<script>
+
+        function onShowroom() {
+                            console.log('showroom Name form jsp');
+                            var name = document.getElementById('showroomName');
+                            var nameValue = name.value;
+                            var showroomError = document.getElementById("showroomError");
+                            var submitButton = document.getElementById("submitButton");
+
+                            var pattern = /^[A-Za-z\s]{5,40}$/;
+
+                            if (nameValue === "") {
+                                showroomError.innerHTML = "Showroom Name cannot be empty!";
+                                return;
+                            }
+
+                            if (!pattern.test(nameValue)) {
+                                showroomError.innerHTML = "Invalid Showroom Name! Only contains letters ";
+                                submitButton.disabled = true;
+                                return;
+                            }
+
+                            var xhttp = new XMLHttpRequest();
+                            if (nameValue !== "") {
+                                xhttp.open("GET", "http://localhost:2004/Osama_Bike_Showroom/showroomName/" + nameValue);
+                                xhttp.send();
+
+                                xhttp.onload = function () {
+                                    console.log(this.responseText)
+                                    document.getElementById("showroomError").innerHTML = this.responseText;
+                                }
+                            }
+        }
+
+        function onAddress() {
+            console.log('Address from jsp');
+            var name = document.getElementById('address');
+            var nameValue = name.value;
+            var addressError = document.getElementById("addressError");
+            var submitButton = document.getElementById("submitButton");
+
+            var pattern = /^[A-Za-z\s,.-]{5,40}$/;
+
+                if (nameValue === "") {
+                    addressError.innerHTML = "Address cannot be empty!";
+                    addressError.style.color = "red";
+                    return;
+                }
+
+                if (!pattern.test(nameValue)) {
+                    addressError.innerHTML = "Invalid Address! Minimum 5 character";
+                    addressError.style.color = "red";
+                    submitButton.disabled = true;
+                    return;
+                }
+
+            var xhttp = new XMLHttpRequest();
+            if (nameValue !== "") {
+                xhttp.open("GET", "http://localhost:2004/Osama_Bike_Showroom/address/" + nameValue);
+                xhttp.send();
+
+                xhttp.onload = function () {
+                    console.log(this.responseText)
+                    document.getElementById("addressError").innerHTML = this.responseText;
+                }
+            }
+
+        }
+
+         function onContact(){
+                    console.log('Contact form jsp');
+                    var name = document.getElementById('contact');
+                    var nameValue = name.value;
+                    var contactError = document.getElementById("contactError");
+                     var submitButton = document.getElementById("submitButton");
+
+                    var pattern = /^[9876]\d{9}$/;
+
+                    if (nameValue === "") {
+                            contactError.innerHTML = "Contact number cannot be empty!";
+                            contactError.style.color = "red";
+                            return;
+                        }
+
+                        if (!pattern.test(nameValue)) {
+                            contactError.innerHTML = "Invalid Contact! Give Proper Contact";
+                            contactError.style.color = "red";
+                            submitButton.disabled = true;
+                            return;
+                        }
+
+                    var xhttp = new XMLHttpRequest();
+                    if(nameValue !== ""){
+                        xhttp.open("GET" , "http://localhost:2004/Osama_Bike_Showroom/contact/" + nameValue);
+                        xhttp.send();
+
+                        xhttp.onload = function () {
+                            console.log(this.responseText)
+                            document.getElementById("contactError").innerHTML = this.responseText;
+                        }
+                    }
+                }
+
+   </script>
 
 </body>
 

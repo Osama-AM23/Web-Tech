@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showroom Success</title>
+    <link rel="icon" href="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg"
+        type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --main-color: #5c899d;
+            --bg-color: #fffcef;
+            --text-color: #2e4a56;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--main-color);
+            padding: 10px 15px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Centered Image with Proper Sizing */
+        .success-img img {
+            width: 200px;
+            /* Adjust size as needed */
+            height: auto;
+            margin-top: 80px;
+        }
+
+        /* Styled Heading */
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Small Button Div */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Animated Button */
+        .button-container a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--main-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        /* Icon */
+        .button-container a i {
+            font-size: 32px;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Button Hover Effect */
+        .button-container a:hover {
+            background: #2e4a56;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        .button-container a:hover i {
+            transform: rotate(360deg);
+        }
+
+        
+        .button-container h4 {
+            font-size: 10px;
+            margin: 5px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg" alt="OLA Electric">
+    </header>
+
+    <div class="success-img">
+        <img src="https://i.ibb.co/W4b9Q9dS/24122187-bwink-msc-07-single-09-Photoroom.png" alt="Showroom Success Image">
+    </div>
+
+    <h2>Showroom Added Successfully!</h2>
+
+    <div class="button-container">
+        <a href="addShowRoom">
+            <i class="bi bi-plus-circle-fill"></i>
+        </a>
+        <h4>Add More Showroom</h4>
+    </div>
+</body>
+
+</html>

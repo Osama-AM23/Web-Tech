@@ -101,7 +101,7 @@
         <a href="addShowRoom">
             <i class="bi bi-plus-circle-fill"></i>
         </a> <h3>Add showroom</h3>
-        <a href="addBikeList">
+        <a href="addBikeDetails">
             <i class="bi bi-plus-circle-fill"></i>
         </a> <h3>Add Bike Info</h3>
     </div>

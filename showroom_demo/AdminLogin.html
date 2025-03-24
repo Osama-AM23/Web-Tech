@@ -1,3 +1,5 @@
+<%@ page isELIgnored = "false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,30 +9,32 @@
     <title>Admin Login</title>
     <link rel="icon" href="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg"
         type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <style>
         :root {
             --main-color: #5c899d;
             --bg-color: #fffcef;
             --text-color: #2e4a56;
+            --button-hover: #fff9e0;
         }
 
         body {
             margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            text-align: center;
         }
 
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             background: var(--main-color);
             padding: 8px 15px;
@@ -50,8 +54,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 300px;
+            width: 320px;
         }
 
         .container h3 {
@@ -59,17 +62,16 @@
             margin-bottom: 15px;
         }
 
-        .container input::placeholder {
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 12px;
-            font-style: italic;
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
         .container input {
-            width: 90%;
+            width: calc(100% - 20px);
             padding: 10px;
-            margin: 10px 0;
             border: none;
             border-radius: 5px;
             background: white;
@@ -77,37 +79,71 @@
             font-size: 16px;
             outline: none;
             transition: background 0.3s ease-in-out;
+            display: block;
         }
 
-        .container input::placeholder {
-            color: var(--text-color);
-            opacity: 0.8;
+        .send-otp-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--main-color);
         }
 
-        .container input:focus {
-            background: var(--bg-color);
+        .send-otp-btn:hover {
+            transform: scale(1.1);
         }
 
-        .container input[type="submit"] {
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-size: 16px;
+        .container form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .container .login-btn {
+            background: white;
+            color: var(--main-color);
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            width: 100%;
-            box-shadow: 0 0 5px var(--bg-color);
+            margin-bottom: 30px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 3px;
+            border: none;
         }
 
-        .container input[type="submit"]:hover {
-            box-shadow: 0 0 15px var(--bg-color);
+        .container .login-btn:hover {
+            background: var(--button-hover);
+            color: var(--text-color);
+            box-shadow: 0 0 10px var(--button-hover);
             transform: scale(1.05);
         }
+
+        .container .re-send-btn {
+            background: white;
+            color: var(--main-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            padding: 4px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+
+        .container .re-send-btn:hover {
+            background: var(--button-hover);
+            color: var(--text-color) box-shadow 0 0 6px var(--button-hover);
+        }
+
     </style>
 </head>
 
 <body>
-
     <header>
         <img src="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg" alt="OLA Electric">
     </header>
@@ -115,10 +151,84 @@
     <div class="container">
         <form action="adminLogin" method="post">
             <h3>SHOWROOM ADMIN</h3>
-            <input type="text" id="email" name="email" placeholder="Enter Admin Email Id" />
-            <input type="submit" value="Send OTP">
+            <div class="input-container">
+                <input type="text" id="email" name="email" placeholder="Enter Admin Email Id" value="${email}" />
+                <button type="submit" class="send-otp-btn"><i class="bi bi-arrow-right-circle-fill"></i></button>
+            </div>
+        </form>
+
+        <form action="verifyOtp" method="post">
+            <input type="hidden" name="email" value="${email}" />
+            <input type="text" id="otp" name="otp" placeholder="Enter OTP" />
+            <span class="error" id="time">02:00</span>
+            <c:if test="${not empty error}">
+                <p style="color: red;">${error}</p>
+            </c:if>
+            <input type="submit" class="login-btn" value="Login">
+        </form>
+
+        <form action="resendOtp" method="post">
+            <input type="hidden" name="email" value="${email}" />
+            <input type="submit" class="re-send-btn" value="Resend OTP">
         </form>
     </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let timerInterval; // To store the interval reference
+
+    function updateTime() {
+        const now = new Date();
+        const time = now.toLocaleTimeString();
+        const date = now.toLocaleDateString();
+        document.getElementById("current-time").textContent = time;
+        document.getElementById("current-date").textContent = date;
+    }
+
+    function startTimer(duration, display) {
+        let timer = duration,
+            minutes,
+            seconds;
+
+        clearInterval(timerInterval); // Clear any existing timer before starting a new one
+
+        timerInterval = setInterval(function () {
+            minutes = Math.floor(timer / 60);
+            seconds = timer % 60;
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(timerInterval);
+                display.textContent = "Time Expired";
+                document.querySelector(".login-btn").disabled = true; // Disable login button after timer expires
+            }
+        }, 1000);
+    }
+
+    document.querySelector(".send-otp-btn").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default form submission
+        const emailInput = document.getElementById("email").value.trim();
+
+        if (emailInput === "") {
+            alert("Please enter an email address.");
+            return;
+        }
+
+        this.form.submit(); 
+
+        
+        let twoMinutes = 2 * 60;
+        let display = document.getElementById("time");
+        startTimer(twoMinutes, display);
+    });
+
+    updateTime();
+    setInterval(updateTime, 1000);
+});
+</script>
 </body>
 
 </html>
