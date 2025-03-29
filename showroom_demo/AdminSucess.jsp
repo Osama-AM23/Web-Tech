@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin main page</title>
+    <title>Admin Main Page</title>
     <link rel="icon" href="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg"
         type="image/png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
+    
     <style>
         :root {
             --main-color: #5c899d;
             --bg-color: #fffcef;
             --text-color: #2e4a56;
+            --button-hover: #4a7388;
         }
 
         body {
             margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
             text-align: center;
@@ -32,61 +32,69 @@
 
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             background: var(--main-color);
-            padding: 8px 15px;
+            padding: 12px 20px;
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         header img {
-            height: 35px;
+            height: 40px;
             width: auto;
         }
 
-        /* Center the div content */
-        div {
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            /* Space between buttons */
-            margin-top: 100px;
-            /* Adjust spacing below the header */
+            margin-top: 120px;
         }
 
-        /* Style the circular button */
-        div a {
+        .btn-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bg-color);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Style the icon inside the button */
-        div a i {
-            font-size: 28px;
-            color: var(--text-color);
-        }
-
-        /* Hover effect */
-        div a:hover {
+            width: 200px;
+            padding: 12px 20px;
+            border-radius: 30px;
             background: var(--main-color);
-            box-shadow: 0 0 15px var(--main-color);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Change icon color on hover */
-        div a:hover i {
-            color: white;
+        .btn-link i {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        .btn-link:hover {
+            background: var(--button-hover);
+            box-shadow: 0 0 20px var(--button-hover);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .btn-link:hover i {
+            animation: bounce 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -97,15 +105,17 @@
         <img src="https://cdn.olaelectric.com/ev-discovery-platform/New-Homepage/ola_black_logo.svg" alt="OLA Electric">
     </header>
 
-    <div>
-        <a href="addShowRoom">
-            <i class="bi bi-plus-circle-fill"></i>
-        </a> <h3>Add showroom</h3>
-        <a href="addBikeDetails">
-            <i class="bi bi-plus-circle-fill"></i>
-        </a> <h3>Add Bike Info</h3>
+    <div class="container">
+        <a href="addShowRoom" class="btn-link">
+            <i class="bi bi-plus-circle-fill"></i> Add Showroom
+        </a>
+        <a href="addBikeDetails" class="btn-link">
+            <i class="bi bi-plus-circle-fill"></i> Add Bike Info
+        </a>
+        <a href="getDetails" class="btn-link">
+            <i class="bi bi-plus-circle-fill"></i> Assign Bike For Showroom
+        </a>
     </div>
-
 
 </body>
 

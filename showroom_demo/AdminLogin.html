@@ -157,10 +157,10 @@
             </div>
         </form>
 
-        <form action="verifyOtp" method="post">
+        <form action="verifyOtp" method="post" id="otpForm">
             <input type="hidden" name="email" value="${email}" />
             <input type="text" id="otp" name="otp" placeholder="Enter OTP" />
-            <span class="error" id="time">02:00</span>
+            <div>Time left = <span id="timer"></span></div>
             <c:if test="${not empty error}">
                 <p style="color: red;">${error}</p>
             </c:if>
@@ -172,63 +172,34 @@
             <input type="submit" class="re-send-btn" value="Resend OTP">
         </form>
     </div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    let timerInterval; // To store the interval reference
-
-    function updateTime() {
-        const now = new Date();
-        const time = now.toLocaleTimeString();
-        const date = now.toLocaleDateString();
-        document.getElementById("current-time").textContent = time;
-        document.getElementById("current-date").textContent = date;
-    }
-
-    function startTimer(duration, display) {
-        let timer = duration,
-            minutes,
-            seconds;
-
-        clearInterval(timerInterval); // Clear any existing timer before starting a new one
-
-        timerInterval = setInterval(function () {
-            minutes = Math.floor(timer / 60);
-            seconds = timer % 60;
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
-                clearInterval(timerInterval);
-                display.textContent = "Time Expired";
-                document.querySelector(".login-btn").disabled = true; // Disable login button after timer expires
+    <script>
+        let timerOn = true;
+    
+        function startTimer(duration) {
+            let remaining = duration;
+            function updateTimer() {
+                let m = Math.floor(remaining / 60);
+                let s = remaining % 60;
+    
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                document.getElementById('timer').innerText = m + ':' + s;
+                remaining--;
+    
+                if (remaining >= 0 && timerOn) {
+                    setTimeout(updateTimer, 1000);
+                } else {
+                    document.getElementById("otp").disabled = true;
+                    document.getElementById("submitBtn").disabled = true;
+                    alert("OTP expired! Please request a new one.");
+                }
             }
-        }, 1000);
-    }
-
-    document.querySelector(".send-otp-btn").addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default form submission
-        const emailInput = document.getElementById("email").value.trim();
-
-        if (emailInput === "") {
-            alert("Please enter an email address.");
-            return;
+            updateTimer();
         }
-
-        this.form.submit(); 
-
-        
-        let twoMinutes = 2 * 60;
-        let display = document.getElementById("time");
-        startTimer(twoMinutes, display);
-    });
-
-    updateTime();
-    setInterval(updateTime, 1000);
-});
-</script>
+    
+        // Start timer when OTP is sent
+        startTimer(120); // 2 minutes
+    </script>
 </body>
 
 </html>
