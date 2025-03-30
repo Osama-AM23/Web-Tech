@@ -9,7 +9,7 @@
     <style>
         :root {
             --main-color: #5c899d;
-            --bg-color: #fffcef;
+            --bg-color: #ffffff;
             --text-color: #2e4a56;
         }
 
@@ -48,7 +48,7 @@
             color: white;
             cursor: pointer;
             margin-left: auto;
-            margin-right: 40px; /* Adjusted to move slightly more to the right */
+            margin-right: 40px; 
             position: relative;
         }
 
@@ -69,7 +69,6 @@
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
-
 
         .menu {
             display: none;
@@ -104,20 +103,25 @@
             position: relative;
         }
 
-        .slider {
-            display: flex;
-            width: 100%;
-            transition: transform 2s ease-in-out;
-        }
-
-        .slider img {
-            width: 100%;
-            border-radius: 5px;
-            flex-shrink: 0;
-        }
-
         h2, h4 {
             margin-top: 10px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: justify;
+        }
+        .bottom-right-img {
+            position: fixed;
+            bottom: 10px;
+            right: 0px;
+            width: 500px;
+            height: auto;
         }
     </style>
 </head>
@@ -132,17 +136,11 @@
     </header>
 
     <div class="container">
-        <div class="slider" id="slider">
-            <img src="https://i.pinimg.com/736x/ca/b3/38/cab338f6182bc0c24249b5bc0a9a9481.jpg" alt="OLA Electric">
-            <img src="https://i.pinimg.com/736x/30/d9/29/30d929a96768ae700d20158d8b971468.jpg" alt="OLA Electric">
-            <img src="https://i.pinimg.com/736x/ce/e0/a3/cee0a3af7a0c40317936fc910eff4474.jpg" alt="OLA Electric">
-            <img src="https://i.ibb.co/jkr0FdD9/hp-banner-web-image-180325.webp" alt="OLA Electric">
-            <img src="https://i.ibb.co/8LZH03qg/s1-x-gen3-plus-banner-web-image.webp" alt="OLA Electric">
-        </div>
         <h2>Welcome To OLA Electric</h2>
         <h4>Where Would You Like To Start?</h4>
     </div>
-
+    
+    <img class="bottom-right-img" src="https://i.ibb.co/TMf6Mkrh/home-experience-center-bg-v2-Photoroom.png" alt="Experience Center">
     
     <script>
         function toggleMenu() {
